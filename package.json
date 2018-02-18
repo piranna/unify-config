@@ -4,6 +4,7 @@
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
   "main": "index.js",
   "scripts": {
+    "coveralls": "cat coverage/lcov.info | coveralls",
     "test": "jest --coverage --notify"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "jest-cli": "^22.3.0"
   }
 }
