@@ -1,0 +1,37 @@
+{
+  "name": "config",
+  "version": "0.0.0",
+  "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --notify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnifyMe/config.git"
+  },
+  "keywords": [
+    "npm_package_config",
+    "env",
+    "argv",
+    "config",
+    "environment",
+    "variables"
+  ],
+  "author": "Unifyme (http://www.unifyme.me/)",
+  "contributors": [
+    "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/UnifyMe/config/issues"
+  },
+  "homepage": "https://github.com/UnifyMe/config#readme",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "jest-cli": "^22.3.0"
+  }
+}
