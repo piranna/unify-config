@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "jest-cli": "^22.3.0"
+    "jest-cli": "^22.4.0"
   }
 }
