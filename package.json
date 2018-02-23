@@ -30,6 +30,7 @@
   "homepage": "https://github.com/UnifyMe/config#readme",
   "dependencies": {
     "dotenv": "^5.0.0",
+    "find-up": "^2.1.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {

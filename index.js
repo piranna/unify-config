@@ -1,4 +1,5 @@
 const dotenv   = require('dotenv')
+const findUp   = require('find-up').sync
 const minimist = require('minimist')
 
 
@@ -46,6 +47,9 @@ function config(argv, options)
     options = argv
     argv = null
   }
+
+  if(!options) options = {}
+  if(!options.path) options.path = findUp('.env')
 
   const {env} = process
 
