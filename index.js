@@ -31,6 +31,11 @@ function reduceEnv(acum, [key, value])
   return acum
 }
 
+function parseEnv(env)
+{
+  return Object.entries(env).reduce(reduceEnv, {})
+}
+
 
 /**
  * Unify config from `package.json`, `.env` file, environment variables and argv
@@ -65,8 +70,10 @@ function config(argv, options)
   Object.assign(env, minimist(argv))
 
   // return parsed environment variables
-  return Object.entries(env).reduce(reduceEnv, {})
+  return parseEnv(env)
 }
+
+config.parseEnv = parseEnv
 
 
 module.exports = config
