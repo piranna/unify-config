@@ -11,6 +11,7 @@ function unifyEnv([key, value])
   const matches = key.match(NPM_PACKAGE_CONFIG_REGEX)
   if(!matches) return
 
+  // Add `npm` config variable if the same environment one is not already set
   const key2 = matches[1]
   if(!this.hasOwnProperty(key2))
     this[key2] = value

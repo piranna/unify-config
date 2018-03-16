@@ -1,5 +1,5 @@
 {
-  "name": "config",
+  "name": "@unifyme/config",
   "version": "0.0.0",
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
   "main": "index.js",
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/UnifyMe/config#readme",
   "dependencies": {
-    "dotenv": "^5.0.0",
+    "dotenv": "^5.0.1",
     "find-up": "^2.1.0",
     "minimist": "^1.2.0"
   },
