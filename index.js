@@ -1,6 +1,6 @@
-const dotenv   = require('dotenv')
-const findUp   = require('find-up').sync
-const minimist = require('minimist')
+const dotenv         = require('dotenv')
+const {sync: findUp} = require('find-up')
+const minimist       = require('minimist')
 
 
 const NPM_PACKAGE_CONFIG_REGEX = /^npm_package_config_(.+)/
@@ -25,7 +25,7 @@ function reduceEnv(acum, [key, value])
   {
     value = JSON.parse(value)
   }
-  catch(ex){}
+  catch(e){}
 
   acum[key] = value
 
