@@ -54,8 +54,7 @@ function config(argv, options)
     argv = null
   }
 
-  if(!options) options = {}
-  if(!options.path) options.path = findUp('.env')
+  options = {path = findUp('.env')} = options || {}
 
   const {env} = process
 
