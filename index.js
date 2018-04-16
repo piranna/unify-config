@@ -60,7 +60,7 @@ function config(argv, options)
 
   // dotenv
   const {error} = dotenv.config(options)
-  if(error) throw error
+  if(error && error.code !== 'ENOENT') throw error
 
   // unify environment variables and npm package config
   Object.entries(env).forEach(unifyEnv, env)
