@@ -63,9 +63,8 @@ function config(argv, options)
     argv = null
   }
 
-  options = {path = findUp('.env')} = options || {}
+  options = {env = process.env, path = findUp('.env')} = options || {}
 
-  const {env} = process
 
   // argv - higher priority over environment variables
   if(!argv) argv = process.argv.slice(2)
