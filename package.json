@@ -29,9 +29,11 @@
   },
   "homepage": "https://github.com/UnifyMe/config#readme",
   "dependencies": {
+    "caller-callsite": "^2.0.0",
     "dotenv": "^5.0.1",
     "find-up": "^2.1.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "read-pkg-up": "^3.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",

@@ -1,6 +1,10 @@
-const dotenv         = require('dotenv')
-const {sync: findUp} = require('find-up')
-const minimist       = require('minimist')
+const {dirname} = require('path')
+
+const callerCallsite    = require('caller-callsite')
+const dotenv            = require('dotenv')
+const {sync: findUp}    = require('find-up')
+const minimist          = require('minimist')
+const {sync: readPkgUp} = require('read-pkg-up')
 
 
 const NPM_PACKAGE_CONFIG_REGEX = /^npm_package_config_(.+)/
@@ -17,6 +21,11 @@ function unifyEnv([key, value])
     this[key2] = value
 
   delete this[key]
+}
+
+function unifyConfig([key, value])
+{
+  if(!this.hasOwnProperty(key)) this[key] = value
 }
 
 function reduceEnv(acum, [key, value])
@@ -66,9 +75,13 @@ function config(argv, options)
   const {error} = dotenv.config(options)
   if(error && error.code !== 'ENOENT') throw error
 
-  // unify environment variables and npm package config
+  // npm config (project root `package.json`)
   Object.entries(env).forEach(unifyEnv, env)
 
+  // `config` entry at `package.json` of caller module (for dependencies)
+  const cwd = dirname(callerCallsite().getFileName())
+  const {pkg: {config = {}} = {}} = readPkgUp({cwd})
+  Object.entries(config).forEach(unifyConfig, env)
 
   // return parsed environment variables
   return parseEnv(env)
