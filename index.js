@@ -63,15 +63,14 @@ function config(argv, options)
     argv = null
   }
 
-  options = {env = process.env, path = findUp('.env')} = options || {}
-
+  const {env = process.env, path} = options || {}
 
   // argv - higher priority over environment variables
   if(!argv) argv = process.argv.slice(2)
   Object.assign(env, minimist(argv))
 
   // dotenv
-  const {error} = dotenv.config(options)
+  const {error} = dotenv.config({path: path || findUp('.env')})
   if(error && error.code !== 'ENOENT') throw error
 
   // npm config (project root `package.json`)
