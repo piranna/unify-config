@@ -58,6 +58,10 @@ function config(argv, options)
 
   const {env} = process
 
+  // argv - higher priority over environment variables
+  if(!argv) argv = process.argv.slice(2)
+  Object.assign(env, minimist(argv))
+
   // dotenv
   const {error} = dotenv.config(options)
   if(error && error.code !== 'ENOENT') throw error
@@ -65,9 +69,6 @@ function config(argv, options)
   // unify environment variables and npm package config
   Object.entries(env).forEach(unifyEnv, env)
 
-  // argv
-  if(!argv) argv = process.argv.slice(2)
-  Object.assign(env, minimist(argv))
 
   // return parsed environment variables
   return parseEnv(env)
