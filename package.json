@@ -1,5 +1,5 @@
 {
-  "name": "@unifyme/config",
+  "name": "unify-config",
   "version": "0.1.0",
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
   "main": "index.js",
