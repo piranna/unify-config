@@ -5,6 +5,7 @@ const dotenv            = require('dotenv')
 const {sync: findUp}    = require('find-up')
 const minimist          = require('minimist')
 const {sync: readPkgUp} = require('read-pkg-up')
+const string2js         = require('string2js')
 
 
 const NPM_PACKAGE_CONFIG_REGEX = /^npm_package_config_(.+)/
@@ -30,13 +31,7 @@ function unifyConfig([key, value])
 
 function reduceEnv(acum, [key, value])
 {
-  try
-  {
-    value = JSON.parse(value)
-  }
-  catch(e){}
-
-  acum[key] = value
+  acum[key] = string2js(value)
 
   return acum
 }
