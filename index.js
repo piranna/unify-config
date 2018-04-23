@@ -1,5 +1,6 @@
 const {dirname} = require('path')
 
+const appRootPath       = require('app-root-path')
 const callerCallsite    = require('caller-callsite')
 const dotenv            = require('dotenv')
 const {sync: findUp}    = require('find-up')
@@ -27,6 +28,12 @@ function unifyEnv([key, value])
 function unifyConfig([key, value])
 {
   if(!this.hasOwnProperty(key)) this[key] = value
+}
+
+function unifyPackageConfig(cwd, env)
+{
+  const {pkg: {config = {}} = {}} = readPkgUp({cwd})
+  Object.entries(config).forEach(unifyConfig, env)
 }
 
 function reduceEnv(acum, [key, value])
@@ -68,13 +75,14 @@ function config(argv, options)
   const {error} = dotenv.config({path: path || findUp('.env')})
   if(error && error.code !== 'ENOENT') throw error
 
-  // npm config (project root `package.json`)
+  // npm config
   Object.entries(env).forEach(unifyEnv, env)
 
+  // `config` entry at project root `package.json` (in case not using `npm run`)
+  unifyPackageConfig(appRootPath, env)
+
   // `config` entry at `package.json` of caller module (for dependencies)
-  const cwd = dirname(callerCallsite().getFileName())
-  const {pkg: {config = {}} = {}} = readPkgUp({cwd})
-  Object.entries(config).forEach(unifyConfig, env)
+  unifyPackageConfig(dirname(callerCallsite().getFileName()), env)
 
   // return parsed environment variables
   return parseEnv(env)

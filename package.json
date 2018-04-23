@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/UnifyMe/config#readme",
   "dependencies": {
-    "caller-callsite": "^2.0.0",
+    "app-root-path": "^2.0.1",
+    "caller-callsite": "piranna/caller-callsite",
     "dotenv": "^5.0.1",
     "find-up": "^2.1.0",
     "minimist": "^1.2.0",
