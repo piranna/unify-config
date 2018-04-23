@@ -79,7 +79,7 @@ function config(argv, options)
   Object.entries(env).forEach(unifyEnv, env)
 
   // `config` entry at project root `package.json` (in case not using `npm run`)
-  unifyPackageConfig(appRootPath, env)
+  unifyPackageConfig(appRootPath.toString(), env)
 
   // `config` entry at `package.json` of caller module (for dependencies)
   unifyPackageConfig(dirname(callerCallsite().getFileName()), env)
