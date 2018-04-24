@@ -51,7 +51,7 @@ function unifyEnv([key, value])
   delete this[key]
 }
 
-function unifyPackageConfig(cwd, env)
+function unifyPackageConfig(env, cwd)
 {
   const {pkg: {config = {}} = {}} = readPkgUp({cwd})
   Object.entries(config).forEach(unifyConfig, env)
@@ -89,7 +89,7 @@ function config(argv, options)
 
 
   // `config` entry at `package.json` of caller module (for dependencies)
-  unifyPackageConfig(dirname(callerCallsite().getFileName()), env)
+  unifyPackageConfig(env, dirname(callerCallsite().getFileName()))
 
   // return parsed environment variables
   return parseEnv(env)
