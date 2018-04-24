@@ -18,9 +18,7 @@ function unifyEnv([key, value])
   if(!matches) return
 
   // Add `npm` config variable if the same environment one is not already set
-  const key2 = matches[1]
-  if(!this.hasOwnProperty(key2))
-    this[key2] = value
+  unifyConfig([matches[1], value])
 
   delete this[key]
 }
