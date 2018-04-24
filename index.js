@@ -12,6 +12,23 @@ const string2js         = require('string2js')
 const NPM_PACKAGE_CONFIG_REGEX = /^npm_package_config_(.+)/
 
 
+function parseEnv(env)
+{
+  return Object.entries(env).reduce(reduceEnv, {})
+}
+
+function reduceEnv(acum, [key, value])
+{
+  acum[key] = string2js(value)
+
+  return acum
+}
+
+function unifyConfig([key, value])
+{
+  if(!this.hasOwnProperty(key)) this[key] = value
+}
+
 function unifyEnv([key, value])
 {
   const matches = key.match(NPM_PACKAGE_CONFIG_REGEX)
@@ -23,27 +40,10 @@ function unifyEnv([key, value])
   delete this[key]
 }
 
-function unifyConfig([key, value])
-{
-  if(!this.hasOwnProperty(key)) this[key] = value
-}
-
 function unifyPackageConfig(cwd, env)
 {
   const {pkg: {config = {}} = {}} = readPkgUp({cwd})
   Object.entries(config).forEach(unifyConfig, env)
-}
-
-function reduceEnv(acum, [key, value])
-{
-  acum[key] = string2js(value)
-
-  return acum
-}
-
-function parseEnv(env)
-{
-  return Object.entries(env).reduce(reduceEnv, {})
 }
 
 
