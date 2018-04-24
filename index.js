@@ -12,6 +12,17 @@ const string2js         = require('string2js')
 const NPM_PACKAGE_CONFIG_REGEX = /^npm_package_config_(.+)/
 
 
+function npmConfig(env)
+{
+  // Merge `npm` config environment variables when running using `npm` scripts
+  if(process.env.npm_config_argv)
+    Object.entries(env).forEach(unifyEnv, env)
+
+  // `config` entry at project root `package.json` (in case not using `npm run`)
+  else
+    unifyPackageConfig(env, appRootPath.toString())
+}
+
 function parseEnv(env)
 {
   return Object.entries(env).reduce(reduceEnv, {})
@@ -74,10 +85,8 @@ function config(argv, options)
   if(error && error.code !== 'ENOENT') throw error
 
   // npm config
-  Object.entries(env).forEach(unifyEnv, env)
+  npmConfig(env)
 
-  // `config` entry at project root `package.json` (in case not using `npm run`)
-  unifyPackageConfig(appRootPath.toString(), env)
 
   // `config` entry at `package.json` of caller module (for dependencies)
   unifyPackageConfig(dirname(callerCallsite().getFileName()), env)
