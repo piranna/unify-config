@@ -35,9 +35,12 @@ function reduceEnv(acum, [key, value])
   return acum
 }
 
+// Add environment variable if it's not already set
 function unifyConfig([key, value])
 {
-  if(!this.hasOwnProperty(key)) this[key] = value
+  if(this.hasOwnProperty(key)) return
+
+  this[key] = typeof value === 'string' ? value : JSON.stringify(value)
 }
 
 function unifyEnv([key, value])
