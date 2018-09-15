@@ -2,6 +2,7 @@ const {dirname} = require('path')
 
 const appRootPath       = require('app-root-path')
 const callerCallsite    = require('caller-callsite')
+const merge             = require('deepmerge')
 const dotenv            = require('dotenv')
 const {sync: findUp}    = require('find-up')
 const minimist          = require('minimist')
@@ -81,7 +82,17 @@ function config(argv, options)
 
   // argv - higher priority over environment variables
   if(!argv) argv = process.argv.slice(2)
-  Object.assign(env, minimist(argv))
+  for(let [key, value] of Object.entries(minimist(argv)))
+  {
+    let orig = env[key]
+    if(orig != null)
+    {
+      if(env.constructor.name !== 'object') orig = string2js(orig)
+      value = merge(orig, value)
+    }
+
+    env[key] = typeof value === 'string' ? value : JSON.stringify(value)
+  }
 
   // dotenv
   const {error} = dotenv.config({path: path || findUp('.env')})
