@@ -2,7 +2,7 @@
   "name": "unify-config",
   "version": "0.2.2",
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
     "test": "jest --coverage --notify"
