@@ -1,6 +1,14 @@
 const {resolve} = require('path')
 
+const {parse: dotenv} = require('dotenv')
+
 const config = require('..')
+
+
+const parsers =
+[
+  [dotenv, '']
+]
 
 
 beforeEach(function()
@@ -10,24 +18,48 @@ beforeEach(function()
   delete env.blah
   delete env.env
   delete env.foo
+  delete env.npm_package_config_foo
 })
 
-
-test('update `process.env`', function()
-{
-  const {env} = process
-
-  config(['--blah'], {path: resolve(__dirname, 'fixtures', 'env')})
-
-  expect(env).toMatchObject({blah: 'true', env: 'environment', foo: 'true'})
-})
 
 test('parse values', function()
 {
   const {env} = process
 
-  const result = config({path: resolve(__dirname, 'fixtures', 'env')})
+  env.npm_package_config_foo = true
+
+  const result = config({
+    parsers,
+    path: resolve(__dirname, 'fixtures', 'env')
+  })
+
+  expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
+})
+
+test('update `process.env`', function()
+{
+  const {env} = process
+
+  env.npm_package_config_foo = true
+
+  const result = config.bindEnv({
+    parsers,
+    path: resolve(__dirname, 'fixtures', 'env')
+  })
 
   expect(env).toMatchObject({blah: '2', env: 'environment', foo: 'true'})
-  expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
+})
+
+test('argv overwrite', function()
+{
+  const {env} = process
+
+  config.bindEnv({
+    argv: ['--blah'],
+    env,
+    parsers,
+    path: resolve(__dirname, 'fixtures', 'env')
+  })
+
+  expect(env).toMatchObject({blah: 'true', env: 'environment'})
 })
