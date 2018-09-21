@@ -29,17 +29,17 @@
   },
   "homepage": "https://github.com/UnifyMe/config#readme",
   "dependencies": {
-    "app-root-path": "^2.0.1",
+    "app-root-path": "^2.1.0",
     "caller-callsite": "piranna/caller-callsite",
     "deepmerge": "^2.1.1",
-    "find-up": "^2.1.0",
     "minimist": "^1.2.0",
-    "read-pkg-up": "^3.0.0",
-    "string2js": "^0.1.1"
+    "pkg-dir": "^3.0.0",
+    "read-pkg-up": "^4.0.0",
+    "string2js": "^0.2.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.0",
-    "jest-cli": "^22.4.0"
+    "coveralls": "^3.0.2",
     "dotenv": "^6.0.0",
+    "jest-cli": "^23.6.0"
   }
 }
