@@ -50,13 +50,26 @@ test('update `process.env`', function()
   expect(env).toMatchObject({blah: '2', env: 'environment', foo: 'true'})
 })
 
+test('update object & no files parsers', function()
+{
+  const env = {}
+
+  process.argv.length = 2
+
+  const result = config.bindEnv({
+    env,
+    path: resolve(__dirname, 'fixtures', 'env')
+  })
+
+  expect(env).toEqual({_: []})
+})
+
 test('argv overwrite', function()
 {
   const {env} = process
 
   config.bindEnv({
     argv: ['--blah'],
-    env,
     parsers,
     path: resolve(__dirname, 'fixtures', 'env')
   })
