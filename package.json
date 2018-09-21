@@ -9,25 +9,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UnifyMe/config.git"
+    "url": "git+https://github.com/piranna/unify-config.git"
   },
   "keywords": [
     "npm_package_config",
     "env",
+    ".env",
     "argv",
     "config",
     "environment",
-    "variables"
+    "variables",
+    "environment variables",
+    "dotenv",
+    "ini",
+    "json",
+    "json5",
+    "toml",
+    "yaml"
   ],
-  "author": "Unifyme (http://www.unifyme.me/)",
-  "contributors": [
-    "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>"
-  ],
+  "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/UnifyMe/config/issues"
+    "url": "https://github.com/piranna/unify-config/issues"
   },
-  "homepage": "https://github.com/UnifyMe/config#readme",
+  "homepage": "https://github.com/piranna/unify-config#readme",
   "dependencies": {
     "app-root-path": "^2.1.0",
     "caller-callsite": "piranna/caller-callsite",
