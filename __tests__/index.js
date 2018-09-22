@@ -47,6 +47,7 @@ test('update `process.env`', function()
     path: resolve(__dirname, 'fixtures', 'env')
   })
 
+  expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
   expect(env).toMatchObject({blah: '2', env: 'environment', foo: 'true'})
 })
 
