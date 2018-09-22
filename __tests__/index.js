@@ -77,3 +77,16 @@ test('argv overwrite', function()
 
   expect(env).toMatchObject({blah: 'true', env: 'environment'})
 })
+
+test('JSON in argv', function()
+{
+  const {env} = process
+
+  const result = config({
+    argv: ['--blah={"foo":"boop"}'],
+    parsers,
+    path: resolve(__dirname, 'fixtures', 'env')
+  })
+
+  expect(result).toMatchObject({blah: {foo: 'boop'}, env: 'environment'})
+})
