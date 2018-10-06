@@ -3,6 +3,7 @@
   "version": "0.3.1",
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
   "main": "lib",
+  "browser": "browser.js",
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
     "test": "jest --coverage --notify"
@@ -41,11 +42,18 @@
     "object-recursive-iterator": "^1.0.2",
     "pkg-dir": "^3.0.0",
     "read-pkg-up": "^4.0.0",
-    "string2js": "^0.2.0"
+    "string2js": "^0.2.0",
+    "urlsearchparams-to-cli": "git+ssh://git@bitbucket.org/piranna/urlsearchparams-to-cli.git"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
     "dotenv": "^6.0.0",
     "jest-cli": "^23.6.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js",
+      "lib/*.js"
+    ]
   }
 }
