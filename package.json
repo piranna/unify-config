@@ -37,7 +37,7 @@
   "dependencies": {
     "app-root-path": "^2.1.0",
     "caller-callsite": "piranna/caller-callsite",
-    "deepmerge": "^2.1.1",
+    "deepmerge": "^2.2.1",
     "minimist": "^1.2.0",
     "object-recursive-iterator": "^1.0.2",
     "pkg-dir": "^3.0.0",
