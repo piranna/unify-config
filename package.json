@@ -43,7 +43,7 @@
     "pkg-dir": "^3.0.0",
     "read-pkg-up": "^4.0.0",
     "string2js": "^0.2.0",
-    "urlsearchparams-to-cli": "git+ssh://git@bitbucket.org/piranna/urlsearchparams-to-cli.git"
+    "urlsearchparams-to-cli": "^0.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
