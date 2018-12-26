@@ -1,7 +1,7 @@
-const merge           = require('deepmerge')
+const merge           = require('deepmerge').all
 const urlsearchparams = require('urlsearchparams-to-cli')
 
-const {cliArguments, javascriptify} = require('./lib/util')
+const {cliArguments, javascriptify, resolveAliases} = require('./lib/util')
 
 
 /**
@@ -13,16 +13,20 @@ const {cliArguments, javascriptify} = require('./lib/util')
  * @return {Object} parsed unified configuration
  */
 function config({
+  aliases,
   argv = urlsearchparams(),
   env = javascriptify(process.env)
 } = {})
 {
   // TODO local and upper npm configs
 
-  return merge(
+  const array =
+  [
     env,                // environment variables
     cliArguments(argv)  // CLI arguments - higher priority
-  )
+  ]
+
+  return merge(array.map(resolveAliases, aliases))
 }
 
 
