@@ -1,6 +1,6 @@
 {
   "name": "unify-config",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Unify config from `package.json`, `.env` file, environment variables and argv",
   "main": "lib",
   "browser": "browser.js",
