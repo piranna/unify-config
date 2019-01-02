@@ -7,8 +7,10 @@ const {cliArguments, javascriptify, resolveAliases} = require('./lib/util')
 /**
  * Unify config from environment variables and URL querystring
  *
- * Unified configuration is available on `process.env` and values already parsed
- * as returned value
+ * Browser specific version taking in account only CLI arguments, fetching them
+ * by default from the URL query string. All static default values and dotenv
+ * configs must be already provided as hardcoded values in environment
+ * variables at `process.env`
  *
  * @return {Object} parsed unified configuration
  */

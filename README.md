@@ -18,14 +18,21 @@ npm install unify-config
 `config()` will pick your config from the `config` field on your `package.json`
 file, your environment variables and your CLI arguments, and you can also set a
 `parsers` option to parse `.env` files and what extensions they should be used
-for each one. Your config will retured parsed as Javascript objects by using
-[string2js](https://github.com/piranna/string2js) module.
+for each one. You can also define `aliases`, for example to map environment
+variables to your app arguments. Your config will return parsed as Javascript
+objects by using [string2js](https://github.com/piranna/string2js) module.
 
+- *aliases*: object mapping from source attribute names to destination ones.
+  Destination can be a function too to calc the value to be used, if return an
+  object then it will map its attributes recursively.
 - *argv*: array where to fetch the CLI arguments. If not defined, it will fetch
   them from `process.argv.slice(2)`
 - *env*: object holding environment variables. Default: `process.env`
 - *parsers*: array for dotenv files. Each one is an array, being first index a
-  loader function and the other ones the file extensions. Default: none
+  parser function and the other ones the file extensions. Any function that
+  accept a string as only argument and return an object like `JSON.parse()` can
+  be used as parser. It can also be set directly as the `parsers` value or to
+  the parser array entry, and will be used for no extension files. Default: none
 - *path*: path of the dotenv files or directory holding them
 
 ```js
@@ -36,6 +43,15 @@ const {load: yaml}    = require('js-yaml/lib/js-yaml/loader')
 const {parse: toml}   = require('toml')
 
 const args = config({
+  aliases: {
+    GITHUB_REPOSITORY: function(value)
+    {
+      const [user, repo] = value.split('/')
+
+      return {repo, user}
+    },
+    GITHUB_TOKEN: 'auth'
+  },
   parsers: [
     [dotenv, ''],  // `dotenv` don't have an extension
     [ini   , '.ini'],
@@ -51,7 +67,7 @@ const args = config({
 Like `config()`, but also sets the parsed values to the provided `env` object
 (or `process.env` if none is provided). Options are the same of `config()`.
 
-## Available `.env` files formats
+## Known `.env` files parsers
 
 - [dotenv](https://github.com/motdotla/dotenv)
 - [JSON](https://www.json.org/)
