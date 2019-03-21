@@ -32,7 +32,8 @@ objects by using [string2js](https://github.com/piranna/string2js) module.
   parser function and the other ones the file extensions. Any function that
   accept a string as only argument and return an object like `JSON.parse()` can
   be used as parser. It can also be set directly as the `parsers` value or to
-  the parser array entry, and will be used for no extension files. Default: none
+  the parser array entry, and will be used for no extension files. Default:
+  `JSON.parse()` using files with `.json` extension.
 - *path*: path of the dotenv files or directory holding them
 
 ```js
