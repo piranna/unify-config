@@ -37,13 +37,15 @@ objects by using [string2js](https://github.com/piranna/string2js) module.
 - *path*: path of the dotenv files or directory holding them
 
 ```js
+const unifyConfig = require('unify-config')
+
 const {parse: dotenv} = require('dotenv')
 const {parse: ini}    = require('ini')
 const json5           = require('json5/lib/parse')
 const {load: yaml}    = require('js-yaml/lib/js-yaml/loader')
 const {parse: toml}   = require('toml')
 
-const args = config({
+const config = unifyConfig({
   aliases: {
     GITHUB_REPOSITORY: function(value)
     {
