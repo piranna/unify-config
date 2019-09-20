@@ -1,0 +1,3 @@
+.travis.yml
+__tests__/
+coverage/
