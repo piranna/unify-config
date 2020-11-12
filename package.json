@@ -35,20 +35,20 @@
   },
   "homepage": "https://github.com/piranna/unify-config#readme",
   "dependencies": {
-    "app-root-path": "^2.2.1",
+    "app-root-path": "^3.0.0",
     "caller-callsite": "piranna/caller-callsite",
-    "deepmerge": "^4.0.0",
-    "minimist": "^1.2.0",
-    "object-recursive-iterator": "^1.0.2",
-    "pkg-dir": "^4.2.0",
-    "read-pkg-up": "^6.0.0",
+    "deepmerge": "^4.2.2",
+    "minimist": "^1.2.5",
+    "object-recursive-iterator": "^2.1.0",
+    "pkg-dir": "^5.0.0",
+    "read-pkg-up": "^7.0.1",
     "string2js": "^0.2.0",
     "urlsearchparams-to-cli": "^0.0.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.6",
-    "dotenv": "^8.1.0",
-    "jest-cli": "^24.9.0"
+    "coveralls": "^3.1.0",
+    "dotenv": "^8.2.0",
+    "jest-cli": "^26.6.3"
   },
   "jest": {
     "collectCoverageFrom": [
