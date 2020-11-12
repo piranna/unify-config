@@ -22,18 +22,35 @@ beforeEach(function()
 })
 
 
-test('parse values', function()
+describe('parse values', function()
 {
-  const {env} = process
+  test('from file', function()
+  {
+    const {env} = process
 
-  env.npm_package_config_foo = true
+    env.npm_package_config_foo = true
 
-  const result = config({
-    parsers,
-    path: resolve(__dirname, 'fixtures', '.env')
+    const result = config({
+      parsers,
+      path: resolve(__dirname, 'fixtures', '.env')
+    })
+
+    expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
   })
 
-  expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
+  test('from directory', function()
+  {
+    const {env} = process
+
+    env.npm_package_config_foo = true
+
+    const result = config({
+      parsers,
+      path: resolve(__dirname, 'fixtures')
+    })
+
+    expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
+  })
 })
 
 test('update `process.env`', function()
