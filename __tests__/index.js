@@ -30,7 +30,7 @@ test('parse values', function()
 
   const result = config({
     parsers,
-    path: resolve(__dirname, 'fixtures', 'env')
+    path: resolve(__dirname, 'fixtures', '.env')
   })
 
   expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
@@ -44,7 +44,7 @@ test('update `process.env`', function()
 
   const result = config.bindEnv({
     parsers,
-    path: resolve(__dirname, 'fixtures', 'env')
+    path: resolve(__dirname, 'fixtures', '.env')
   })
 
   expect(result).toMatchObject({blah: 2, env: 'environment', foo: true})
@@ -59,7 +59,7 @@ test('update object & no files parsers', function()
 
   const result = config.bindEnv({
     env,
-    path: resolve(__dirname, 'fixtures', 'env')
+    path: resolve(__dirname, 'fixtures', '.env')
   })
 
   expect(env).toEqual({_: []})
@@ -72,7 +72,7 @@ test('argv overwrite', function()
   config.bindEnv({
     argv: ['--blah'],
     parsers,
-    path: resolve(__dirname, 'fixtures', 'env')
+    path: resolve(__dirname, 'fixtures', '.env')
   })
 
   expect(env).toMatchObject({blah: 'true', env: 'environment'})
@@ -85,7 +85,7 @@ test('JSON in argv', function()
   const result = config({
     argv: ['--blah={"foo":"boop"}'],
     parsers,
-    path: resolve(__dirname, 'fixtures', 'env')
+    path: resolve(__dirname, 'fixtures', '.env')
   })
 
   expect(result).toMatchObject({blah: {foo: 'boop'}, env: 'environment'})
