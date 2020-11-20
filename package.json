@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/piranna/unify-config#readme",
   "dependencies": {
-    "caller-callsite": "^4.1.0",
+    "caller-callsite": "piranna/caller-callsite",
     "deepmerge": "^4.2.2",
     "minimist": "^1.2.5",
     "object-recursive-iterator": "^2.1.0",
