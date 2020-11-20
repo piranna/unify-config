@@ -79,7 +79,10 @@ test('update object & no files parsers', function()
     path: resolve(__dirname, 'fixtures', '.env')
   })
 
-  expect(env).toEqual({_: []})
+  expect(env).toEqual({
+    _: [],
+    bar: false
+  })
 })
 
 test('argv overwrite', function()
