@@ -35,13 +35,11 @@
   },
   "homepage": "https://github.com/piranna/unify-config#readme",
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "caller-callsite": "^4.1.0",
     "deepmerge": "^4.2.2",
     "minimist": "^1.2.5",
     "object-recursive-iterator": "^2.1.0",
     "pkg-dir": "^5.0.0",
-    "read-pkg-up": "^7.0.1",
     "string2js": "^0.2.0",
     "urlsearchparams-to-cli": "^0.0.0"
   },
